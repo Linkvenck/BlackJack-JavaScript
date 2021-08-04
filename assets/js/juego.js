@@ -9,6 +9,7 @@ const especiales=["A","J","Q","K"];
 
 //Función para crear el deck de cartas añadiendo el nombre de las cartas al arreglo deck
 const crearDeck = () =>{
+    
     //ciclo para concatenar el numero de la carta con el tipo
     for (let i = 2; i <= 10; i++) {
         for (let tipo of tipos) {
@@ -23,7 +24,6 @@ const crearDeck = () =>{
         }
     } 
 
-    console.log(deck);
     //revolver el arreglo de cartas para "barajearla"
     deck= _.shuffle(deck);
     console.log(deck);
@@ -32,3 +32,15 @@ const crearDeck = () =>{
 }
 
 crearDeck();
+
+//Función para poder tomar cartas
+
+const pedirCarta = ()=>{
+    //Condicional donde avisa cuando ya no haya cartas en el deck
+    if (deck.length === 0) {
+        throw "No hay cartas";
+    }
+    //Toma la carta del deck y la elimina del arreglo
+    const carta=deck.pop();
+    return carta    ;
+}
