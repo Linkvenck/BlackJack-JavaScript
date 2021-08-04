@@ -44,3 +44,18 @@ const pedirCarta = ()=>{
     const carta=deck.pop();
     return carta    ;
 }
+
+//darle valor numerico a las cartas que saqué el jugador
+const valorCarta = (carta)=>{
+    //eliminando el tipo de carta para quedarnos con el numero o numero especial de la carta
+    const valor = carta.substring(0, carta.length-1);
+    let puntos = 0;
+    //Validando si la carta es un numero o una de tipo especial
+    puntos = (!isNaN(valor)) ? valor*1 :
+             valor === "A" ? 11 : 10;
+    return puntos;
+
+}
+
+const valor = valorCarta(pedirCarta());
+console.log(valor);
