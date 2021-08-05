@@ -7,6 +7,14 @@ const tipos=["C","D","H","S"];
 //Numeración de cartas especiales como As, Rey, Reina, Jota
 const especiales=["A","J","Q","K"];
 
+//Variables que manejan el puntaje de los participantes
+let puntosJugador=0;
+let puntosCompu=0;
+//referencias HTML
+const btnPedir = document.querySelector("#btnPedir");
+const puntosHTML = document.querySelectorAll("small");
+
+
 //Función para crear el deck de cartas añadiendo el nombre de las cartas al arreglo deck
 const crearDeck = () =>{
     
@@ -26,7 +34,7 @@ const crearDeck = () =>{
 
     //revolver el arreglo de cartas para "barajearla"
     deck= _.shuffle(deck);
-    console.log(deck);
+
     //regresa el deck de cartas
     return deck;
 }
@@ -34,15 +42,14 @@ const crearDeck = () =>{
 crearDeck();
 
 //Función para poder tomar cartas
-
-const pedirCarta = ()=>{
+const pedirCarta = () =>{
     //Condicional donde avisa cuando ya no haya cartas en el deck
     if (deck.length === 0) {
         throw "No hay cartas";
     }
     //Toma la carta del deck y la elimina del arreglo
     const carta=deck.pop();
-    return carta    ;
+    return carta;
 }
 
 //darle valor numerico a las cartas que saqué el jugador
@@ -57,5 +64,10 @@ const valorCarta = (carta)=>{
 
 }
 
-const valor = valorCarta(pedirCarta());
-console.log(valor);
+//
+
+btnPedir.addEventListener("click", () => {
+    const carta = pedirCarta();
+    puntosJugador = puntosJugador + valorCarta(carta);
+    puntosHTML[0].innerText= puntosJugador;
+});
