@@ -13,9 +13,14 @@ let puntosCompu=0;
 //referencias HTML
 const btnPedir = document.querySelector("#btnPedir");
 const btnDetener = document.querySelector("#btnDetener");
+const btnNuevo = document.querySelector("#btnNuevo");
+
 const puntosHTML = document.querySelectorAll("small");
+
 const divCartasJugador = document.querySelector("#jugador-cartas");
 const divCartasCompu = document.querySelector("#computadora-cartas");
+
+
 
 
 
@@ -87,6 +92,11 @@ const turnoComputadora = (puntosMinimos) => {
         }
 
     } while ( puntosCompu <= puntosMinimos && puntosMinimos <=21);
+
+    setTimeout(() => {
+        puntosCompu === puntosJugador ? window.alert("Es un empate") :
+            puntosCompu > 21 ? window.alert("Genial!!! Ganaste!!") : window.alert("Lo siento, perdiste"); 
+    }, 10);
 }
 //
 
@@ -108,7 +118,6 @@ btnPedir.addEventListener("click", () => {
     } else if(puntosJugador === 21){
         btnPedir.disabled= true;
         btnDetener.disabled=true;
-        console.warn("genial");
         turnoComputadora(puntosJugador);
     }
     
@@ -119,3 +128,23 @@ btnDetener.addEventListener("click", () => {
     btnDetener.disabled=true;
     turnoComputadora(puntosJugador);
 });
+
+btnNuevo.addEventListener("click", () =>{
+    console.clear();
+
+    deck = [];
+    crearDeck();
+
+    puntosHTML[0].innerText = 0;
+    puntosHTML[1].innerText = 0;
+
+    btnPedir.disabled   = false;
+    btnDetener.disabled = false;
+    
+    puntosJugador = 0;
+    puntosCompu   = 0;
+
+    divCartasCompu.innerText   = "";
+    divCartasJugador.innerText = "";
+    
+})
